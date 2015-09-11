@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kolomio", "kolomio\kolomio.vcxproj", "{EE9375D0-40E7-4273-95A0-929668399D92}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "superkolmio", "superkolmio\superkolmio.vcxproj", "{DED68B7F-A36C-4B60-86B2-904476656B90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{EE9375D0-40E7-4273-95A0-929668399D92}.Debug|Win32.Build.0 = Debug|Win32
 		{EE9375D0-40E7-4273-95A0-929668399D92}.Release|Win32.ActiveCfg = Release|Win32
 		{EE9375D0-40E7-4273-95A0-929668399D92}.Release|Win32.Build.0 = Release|Win32
+		{DED68B7F-A36C-4B60-86B2-904476656B90}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DED68B7F-A36C-4B60-86B2-904476656B90}.Debug|Win32.Build.0 = Debug|Win32
+		{DED68B7F-A36C-4B60-86B2-904476656B90}.Release|Win32.ActiveCfg = Release|Win32
+		{DED68B7F-A36C-4B60-86B2-904476656B90}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
