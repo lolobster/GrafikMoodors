@@ -141,6 +141,10 @@ int main( void ) {
 
   ////////////////////////////				MATRIISIHÄSSÄKKÄ   EX 23
 
+  std::cout << std::endl;
+  std::cout << "EX 23: MATRIISIHÄSSÄKKÄ" << std::endl;
+  std::cout << std::endl;
+
   mat4 mat1(1.0, 0.0, 2.0, 2.0,
 	  0.0, 1.0, 0.0, 0.0,
 	  1.0, 1.0, 1.0, 2.0,
@@ -156,6 +160,7 @@ int main( void ) {
   vec4 tulosvekki = mat1* mat2 *vekki;
 
   std::cout << "Lasketaan matriiseja :DD vektoriksi :DDD" << std::endl;
+  std::cout << std::endl;
 
   for (int i = 0; i < 4; i++)
   {
@@ -166,6 +171,10 @@ int main( void ) {
   //////////////////////////////
 
   /////////////////////////			MUUNNOSMATRIISI   EX 25
+
+  std::cout << std::endl;
+  std::cout << "EX 25: MUUNNOSMATRIISIN LASKU" << std::endl;
+  std::cout << std::endl;
 
   vec4 p1(0.0, 0.0, 0.0, 1.0);
   vec4 p2(1.0, 0.0, 0.0, 1.0);
@@ -193,10 +202,24 @@ int main( void ) {
 
   ////////////////////////////  KAMERAN SIIRTO  EX 26
 
+  std::cout << std::endl;
+  std::cout << "EX 26: KAMERAN SIIRTO" << std::endl;
+  std::cout << std::endl;
+
   float v_width = 8.0;
   float v_height = 6.0;
 
+  vec3 cam_pos(1.2, 0.1, 0.0);
+  vec3 cam_up = y_axis;
+  vec3 cam_right = x_axis;
+  vec3 cam_front = z_axis;
 
+  mat4 C = lookAt(cam_pos, cam_pos + cam_front, cam_up);
+  T_total = C*T_total;
+
+  PrintVec(T_total*p1);
+  PrintVec(T_total*p2);
+  PrintMatrix(T_total);
 
   ////////////////////////////////
 
