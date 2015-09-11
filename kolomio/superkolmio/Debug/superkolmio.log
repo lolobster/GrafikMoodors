@@ -1,11 +1,35 @@
-﻿Build started 11.9.2015 10:41:56.
-     1>Project "C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\superkolmio\superkolmio.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11.9.2015 12:02:31.
+     1>Project "C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\superkolmio\superkolmio.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\kolomio\renderer.cpp common\controls.cpp common\objloader.cpp common\quaternion_utils.cpp common\shader.cpp common\tangentspace.cpp common\text2D.cpp common\texture.cpp common\vboindexer.cpp main.cpp
          main.cpp
-     1>c:\users\aleksinis\documents\github\grafikmoodors\kolomio\superkolmio\main.cpp(13): fatal error C1083: Cannot open include file: 'renderer.h': No such file or directory
-     1>Done Building Project "C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\superkolmio\superkolmio.vcxproj" (Build target(s)) -- FAILED.
+         vboindexer.cpp
+         texture.cpp
+         text2D.cpp
+         tangentspace.cpp
+         shader.cpp
+         quaternion_utils.cpp
+         objloader.cpp
+         controls.cpp
+         renderer.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\superkolmio.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\..\lib opengl32.lib glfw3.lib glu32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\superkolmio.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\superkolmio.lib" /MACHINE:X86 Debug\renderer.obj
+         Debug\controls.obj
+         Debug\objloader.obj
+         Debug\quaternion_utils.obj
+         Debug\shader.obj
+         Debug\tangentspace.obj
+         Debug\text2D.obj
+         Debug\texture.obj
+         Debug\vboindexer.obj
+         Debug\main.obj
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>renderer.obj : warning LNK4217: locally defined symbol _glfwGetFramebufferSize imported in function "void __cdecl renderer::Render(void)" (?Render@renderer@@YAXXZ)
+     1>renderer.obj : warning LNK4217: locally defined symbol _glfwSwapBuffers imported in function "void __cdecl renderer::Render(void)" (?Render@renderer@@YAXXZ)
+         superkolmio.vcxproj -> C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\superkolmio.exe
+     1>Done Building Project "C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\superkolmio\superkolmio.vcxproj" (Rebuild target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.56
+Time Elapsed 00:00:05.13

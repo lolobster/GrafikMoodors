@@ -1,4 +1,6 @@
 #define GLM_FORCE_RADIANS
+#define GLFW_DLL
+
 #include <cstdio>
 #include <cstdlib>
 #include <GL/glew.h>
@@ -10,6 +12,7 @@
 #include <common/shader.hpp>
 #include <iostream>
 
+#include "common\shader.hpp"
 #include "renderer.h"
 #include "vertexshader.h"
 
@@ -99,7 +102,7 @@ void renderer::Init(GLFWwindow* w) {
 
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
-
+	
 	programID = LoadShaders("VertexShader.vertexshader", "FragmentShader.fragmentshader");
 	MVP_MatrixID = glGetUniformLocation(programID, "MVP");
 	wh_VectorID = glGetUniformLocation(programID, "wh");
