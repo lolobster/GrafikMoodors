@@ -206,8 +206,6 @@ int main( void ) {
   std::cout << "EX 26: KAMERAN SIIRTO" << std::endl;
   std::cout << std::endl;
 
-  float v_width = 8.0;
-  float v_height = 6.0;
 
   vec3 cam_pos(1.2, 0.1, 0.0);
   vec3 cam_up = y_axis;
@@ -222,6 +220,28 @@ int main( void ) {
   PrintMatrix(T_total);
 
   ////////////////////////////////
+
+  /////////////////////////////// EX 27 PROJISOITNTI
+
+  std::cout << std::endl;
+  std::cout << "EX 27: PROJISOINTI" << std::endl;
+  std::cout << std::endl;
+
+  float v_width = 6.0;
+  float v_height = 6.0;
+
+  
+
+  mat4 T_projection = ortho(-0.5*v_width, 0.5*v_width,
+	  -0.5*v_height, 0.5*v_height);
+
+  T_total = T_projection * T_total;
+
+  PrintVec(T_total*p1);
+  PrintVec(T_total*p2);
+  PrintMatrix(T_total);
+
+  //////////////////////////////
 
   glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
   Init();
