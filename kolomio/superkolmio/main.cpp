@@ -8,9 +8,11 @@
 #include <glm/gtx/transform.hpp>
 //using namespace glm;
 #include <common/shader.hpp>
+#include <common/texture.hpp>
 #include <iostream>
 
 #include "renderer.h"
+#include "vertexshaderx.h"
 
 GLFWwindow* window;
 
