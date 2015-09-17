@@ -165,7 +165,8 @@ void renderer::Init(GLFWwindow* w) {
 	TextureID = glGetUniformLocation(programID,
 		"myTextureSampler");
 
-	Texture = loadBMP_custom("./uvtemplate.bmp");
+	Texture = loadBMP_custom("BM_pattern.bmp");
+	
 }
 
 void renderer::Uninit(void) {

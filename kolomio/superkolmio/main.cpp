@@ -31,7 +31,7 @@ int main( void ) {
   int w=1024;
   int h=768;
   window = glfwCreateWindow( w, h,
-	       "Tutorial 02 - Red triangle", NULL, NULL);
+	       "Villisti pyörivät superkolmiot", NULL, NULL);
   if( window == NULL ){
     fprintf( stderr, "Failed to open GLFW window.");
     glfwTerminate();
