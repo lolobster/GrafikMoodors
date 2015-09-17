@@ -1,0 +1,39 @@
+#version 330 core
+
+//Defined also in vertexshader.h
+#define VERTEX_POSITION 0
+#define TEXTURE_DATA 1
+
+// Input vertex data, different for all executions of this shader.
+layout(location = VERTEX_POSITION) in vec3 vertexPosition_modelspace;
+layout(location = TEXTURE_DATA) in vec2 vertexUV;
+uniform mat4 MVP;
+
+// Output data ; will be interpolated for each fragment.
+out vec2 UV;
+/* system outputs
+vec4 gl_Position;
+float gl_PointSize;
+float gl_ClipDistance[];
+*/
+
+
+
+void main() {
+	//gl_Position.xyz =  vertexPosition_modelspace;
+	//gl_Position.w = 1.0;
+	gl_Position =  MVP * vec4(vertexPosition_modelspace,1);
+	UV = vertexUV;
+/*
+	vec4 pos =  MVP * vec4(vertexPosition_modelspace,1);
+	pos.x+=0.01*rand(pos);
+	pos.y+=0.01*rand(pos);
+	pos.z+=0.01*rand(pos);
+	gl_Position=pos;
+*/
+	// The color of each vertex will be interpolated
+	// to produce the color of each fragment
+       // fragmentColor = vertexColor;
+	
+        //fragmentColor = vec3(-gl_Position.z); //Plot z-values
+}
