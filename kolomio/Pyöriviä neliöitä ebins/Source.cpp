@@ -1,0 +1,159 @@
+#define GLM_FORCE_RADIANS
+#include <cstdio>
+#include <cstdlib>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+//using namespace glm;
+#include <common/shader.hpp>
+#include <common/texture.hpp>
+#include <iostream>
+
+#include "vertexshaderx.h"
+
+namespace{
+	GLuint programID;
+	GLuint Texture;
+}
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+
+const GLuint WIDTH = 800, HEIGHT = 600;
+
+int main()
+{
+	glfwInit();
+
+	// asetetaan GLFW asetukset
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+
+
+
+	// luodaan ikkuna
+
+	GLFWwindow* window;
+	window = glfwCreateWindow(WIDTH, HEIGHT, "VITUNNELIOT", nullptr, nullptr);
+	glfwMakeContextCurrent(window);
+
+	glfwSetKeyCallback(window, key_callback);
+
+	// Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
+	glewExperimental = GL_TRUE;
+	// Init GLEW
+	glewInit();
+
+	glViewport(0, 0, WIDTH, HEIGHT);
+
+	programID = LoadShaders("VertexShader.vertexshader", "FragmentShader.fragmentshader");
+
+	// tehään ne vitun neliöt
+
+	GLfloat neliö1[] = {
+		// positions		// Värit			// Texture Coords
+		0.5f,  0.5f, 0.0f,	1.0f, 0.0f, 0.0f,	1.0f, 1.0f, // Top Right
+		0.5f, -0.5f, 0.0f,	0.0f, 1.0f, 0.0f,	1.0f, 0.0f, // Bottom Right
+	   -0.5f, -0.5f, 0.0f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f, // Bottom Left
+	   -0.5f,  0.5f, 0.0f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f	// Top Left
+	};
+	GLuint indices1[] = {
+		0, 1, 3, // eka kolomio
+		1, 2, 3 // toka kolomio
+	};
+
+	GLuint VBO, VAO, EBO;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
+
+	glBindVertexArray(VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(neliö1), neliö1, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices1), indices1, GL_STATIC_DRAW);
+
+	// positiot
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+
+	// värit
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+
+	// textuurien koordinaatit
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(2);
+
+	glBindVertexArray(0); // Unbind VAO
+
+
+	// ladataan ja sähelletään textuurin kanssa
+	GLuint texture;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture); // kaikki GL_TEXTURE_2D säädöt säätää nyt tätä objektia
+
+	// textuurin wrapping parametrit
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // Set texture wrapping to GL_REPEAT (usually basic wrapping method)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+
+	// textuurin filtteröintiparametrit
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+	// ladataan
+	Texture = loadBMP_custom("BM_pattern.bmp");
+
+
+
+	////// ITE TOIMINTALOOPPI////////
+
+	while (!glfwWindowShouldClose(window))
+	{
+		// tarkistetaan eventit
+		glfwPollEvents();
+
+		// render
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// bindataan tekstuuri
+		glBindTexture(GL_TEXTURE_2D, Texture);
+
+		// aktivoidaan shader
+		glUseProgram(programID);
+
+		// piirretään container
+		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
+
+		// vaihetaan screen bufferi
+		glfwSwapBuffers(window);
+	}
+
+
+	// vapautetaan resursseja
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &EBO);
+
+	// terminaattoroidaan GLFW, vapautetaan kaikki GLFW resurssit
+	glfwTerminate();
+	return 0;
+}
+
+// kututaan aina nappia painettaessa
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GL_TRUE);
+}
+
+
+http://learnopengl.com/#!Getting-started/Textures
