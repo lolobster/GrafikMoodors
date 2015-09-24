@@ -1,8 +1,14 @@
 #define GLM_FORCE_RADIANS
+
+// GLEW
+#define GLEW_STATIC
+#include <GL/glew.h>
+
+// GLFW
+#include <GLFW/glfw3.h>
+
 #include <cstdio>
 #include <cstdlib>
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
@@ -61,6 +67,7 @@ int main()
 	   -0.5f, -0.5f, 0.0f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f, // Bottom Left
 	   -0.5f,  0.5f, 0.0f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f	// Top Left
 	};
+
 	GLuint indices1[] = {
 		0, 1, 3, // eka kolomio
 		1, 2, 3 // toka kolomio
@@ -84,7 +91,8 @@ int main()
 	glEnableVertexAttribArray(0);
 
 	// värit
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(1);
 
 	// textuurien koordinaatit
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
@@ -100,15 +108,16 @@ int main()
 
 	// textuurin wrapping parametrit
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // Set texture wrapping to GL_REPEAT (usually basic wrapping method)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 	// textuurin filtteröintiparametrit
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	// ladataan
+	// ladataan tekstuuri
 	Texture = loadBMP_custom("BM_pattern.bmp");
 
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 
 	////// ITE TOIMINTALOOPPI////////
@@ -156,4 +165,4 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 }
 
 
-http://learnopengl.com/#!Getting-started/Textures
+// http://learnopengl.com/#!Getting-started/Textures

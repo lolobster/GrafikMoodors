@@ -1,11 +1,32 @@
-﻿Build started 17.9.2015 13:17:56.
+﻿Build started 24.9.2015 14:24:12.
      1>Project "C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\kolomio\kolomio.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt common\shader.cpp main.cpp
+         main.cpp
+     1>c:\users\aleksinis\documents\github\grafikmoodors\kolomio\kolomio\main.cpp(187): warning C4305: 'argument' : truncation from 'double' to 'const float'
+         shader.cpp
+         Generating Code...
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\kolomio.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\lib glfw3.lib glew32s.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\kolomio.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\kolomio.lib" /MACHINE:X86 Debug\shader.obj
          Debug\main.obj
+         LINK : C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\kolomio.exe not found or not built by the last incremental link; performing full link
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewAttachShader imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewCompileShader imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewCreateProgram imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewCreateShader imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewDeleteShader imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewGetProgramInfoLog imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewGetProgramiv imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewGetShaderInfoLog imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewGetShaderiv imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewLinkProgram imported
+     1>shader.obj : warning LNK4049: locally defined symbol ___glewShaderSource imported
+     1>glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\vc120.pdb'; linking object as if no debug info
          kolomio.vcxproj -> C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\Debug\kolomio.exe
      1>Done Building Project "C:\Users\AleksiNis\Documents\GitHub\GrafikMoodors\kolomio\kolomio\kolomio.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.04
+Time Elapsed 00:00:02.12
