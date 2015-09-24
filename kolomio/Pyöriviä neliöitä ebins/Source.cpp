@@ -7,11 +7,14 @@
 // GLFW
 #include <GLFW/glfw3.h>
 
-#include <cstdio>
-#include <cstdlib>
+// GLM
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/transform.hpp>
+
+#include <cstdio>
+#include <cstdlib>
 //using namespace glm;
 #include <common/shader.hpp>
 #include <common/texture.hpp>
@@ -72,6 +75,9 @@ int main()
 		0, 1, 3, // eka kolomio
 		1, 2, 3 // toka kolomio
 	};
+
+	
+
 
 	GLuint VBO, VAO, EBO;
 	glGenVertexArrays(1, &VAO);
@@ -136,6 +142,15 @@ int main()
 
 		// aktivoidaan shader
 		glUseProgram(programID);
+
+		glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
+		glm::mat4 trans;
+		mit‰kosmistavittuamiksieik‰‰nnyDUDUDUDUDUUU//trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+		trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+		vec = trans * vec;
+		std::cout << std::endl << vec.x << vec.y << vec.z << std::endl;
+		GLuint transformLoc = glGetUniformLocation(programID, "transform");
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
 		// piirret‰‰n container
 		glBindVertexArray(VAO);
