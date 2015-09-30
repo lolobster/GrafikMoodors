@@ -29,7 +29,7 @@ namespace{
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
-const GLuint WIDTH = 800, HEIGHT = 600;
+const GLuint WIDTH = 1200, HEIGHT = 900;
 
 int main()
 {
@@ -65,10 +65,10 @@ int main()
 
 	GLfloat neliö1[] = {
 		// positions		// Värit			// Texture Coords
-		0.5f,  0.5f, 0.0f,	1.0f, 0.0f, 0.0f,	1.0f, 1.0f, // Top Right
-		0.5f, -0.5f, 0.0f,	0.0f, 1.0f, 0.0f,	1.0f, 0.0f, // Bottom Right
-	   -0.5f, -0.5f, 0.0f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f, // Bottom Left
-	   -0.5f,  0.5f, 0.0f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f	// Top Left
+		0.3f,  0.3f, 0.0f,	1.0f, 0.0f, 0.0f,	0.5f, 0.5f, // Top Right
+		0.3f, -0.3f, 0.0f,	0.0f, 1.0f, 0.0f,	0.5f, 0.0f, // Bottom Right
+	   -0.3f, -0.3f, 0.0f,	0.0f, 0.0f, 1.0f,	0.5f, 0.5f, // Bottom Left
+	   -0.3f,  0.3f, 0.0f,	1.0f, 1.0f, 0.0f,	0.0f, 0.5f	// Top Left
 	};
 
 	GLuint indices1[] = {
@@ -127,6 +127,9 @@ int main()
 
 
 	////// ITE TOIMINTALOOPPI////////
+	glm::mat4 trans;
+	trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -143,15 +146,18 @@ int main()
 		// aktivoidaan shader
 		glUseProgram(programID);
 
+
 		glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
-		glm::mat4 trans;
-		trans = glm::translate(trans, glm::vec3(0.5f, 0.5f, 0.0f));
-		trans = glm::rotate(trans, 90.0f, glm::vec3(0.0, 0.0, 1.0));
-		trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+		
+
+		trans = glm::rotate(trans, 0.09f, glm::vec3(0.0, 0.0, 0.5));
+		trans = glm::translate(trans, glm::vec3(0.03f, 0.1f, 0.0f));
+
 		vec = trans * vec;
 		std::cout << std::endl << vec.x << vec.y << vec.z << std::endl;
 		GLuint transformLoc = glGetUniformLocation(programID, "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+
 
 		// piirretään container
 		glBindVertexArray(VAO);
