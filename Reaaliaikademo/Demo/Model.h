@@ -184,16 +184,12 @@ private:
 	}
 };
 
-
-
-
-GLint TextureFromFile(const char* path)
+GLint TextureFromFile(const char* path, string directory)
 {
 	//Generate texture ID and load texture data 
 	GLuint textureID;
 	glGenTextures(1, &textureID);
-	int width, height;
-	std::vector<unsigned char> image;
+	vector<unsigned char> image;
 	unsigned width, height;
 	unsigned error = lodepng::decode(image, width, height, path);
 	// If there's an error, display it.

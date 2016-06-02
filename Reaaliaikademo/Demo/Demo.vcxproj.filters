@@ -41,12 +41,21 @@
     <ClInclude Include="Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.vs">
       <Filter>Shaders</Filter>
     </None>
     <None Include="shader.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="pointLight.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="pointLight.frag">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
