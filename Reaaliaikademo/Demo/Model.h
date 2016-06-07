@@ -12,7 +12,6 @@ using namespace std;
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "lodepng.h"
-#include "Shader.h"
 #include <../assimp/Importer.hpp>
 #include <../assimp/scene.h>
 #include <../assimp/postprocess.h>
@@ -184,23 +183,27 @@ private:
 	}
 };
 
+
+
+
 GLint TextureFromFile(const char* path, string directory)
 {
 	//Generate texture ID and load texture data 
+	string filename = string(path);
+	filename = directory + '/' + filename;
 	GLuint textureID;
 	glGenTextures(1, &textureID);
-	vector<unsigned char> image;
+	std::vector<unsigned char> image; //the raw pixels
 	unsigned width, height;
-	unsigned error = lodepng::decode(image, width, height, path);
-	// If there's an error, display it.
-	if (error != 0)
-	{
-		std::cout << "error " << error << ": " << lodepng_error_text(error) << std::endl;
-		return 1;
-	}
+
+	//decode
+	unsigned error = lodepng::decode(image, width, height, filename);
+
+	//if there's an error, display it
+	if (error) std::cout << "decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
 	// Assign texture to ID
 	glBindTexture(GL_TEXTURE_2D, textureID);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, &image[0]);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	// Parameters

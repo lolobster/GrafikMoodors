@@ -46,16 +46,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.vs">
+    <None Include="..\resource\shader.vs">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="shader.frag">
+    <None Include="..\resource\shader.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="pointLight.vs">
+    <None Include="..\resource\pointLight.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="pointLight.frag">
+    <None Include="..\resource\pointLight.vs">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
