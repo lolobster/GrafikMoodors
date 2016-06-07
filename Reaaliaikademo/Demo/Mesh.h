@@ -59,9 +59,9 @@ public:
 			stringstream ss;
 			string number;
 			string name = this->textures[i].type;
-			if (name == "texture_diffuse")
+			if (name == "mat.texture_diffuse")
 				ss << diffuseNr++; // Transfer GLuint to stream
-			else if (name == "texture_specular")
+			else if (name == "mat.texture_specular")
 				ss << specularNr++; // Transfer GLuint to stream
 			number = ss.str();
 			// Now set the sampler to the correct texture unit
@@ -71,7 +71,7 @@ public:
 		}
 
 		// Also set each mesh's shininess property to a default value (if you want you could extend this to another mesh property and possibly change this value)
-		glUniform1f(glGetUniformLocation(shader.Program, "material.shininess"), 16.0f);
+		glUniform1f(glGetUniformLocation(shader.Program, "mat.shininess"), 16.0f);
 
 		// Draw mesh
 		glBindVertexArray(this->VAO);

@@ -39,7 +39,6 @@ bool firstMouse = true;
 GLfloat deltaTime = 0.0f;
 GLfloat lastFrame = 0.0f;
 
-// The MAIN function, from here we start our application and run the Game loop
 int main()
 {
 	// Init GLFW
@@ -88,6 +87,13 @@ int main()
 		glm::vec3(-1.7f, 0.9f, 1.0f)
 	};
 
+	glm::vec3 pointLightColors[] = {
+		glm::vec3(0.2f, 0.2f, 0.6f),
+		glm::vec3(0.3f, 0.3f, 0.7f),
+		glm::vec3(0.0f, 0.0f, 0.3f),
+		glm::vec3(0.4f, 0.4f, 0.4f)
+	};
+
 	// Game loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -101,10 +107,10 @@ int main()
 		Do_Movement();
 
 		// Clear the colorbuffer
-		glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		shader.Use();   // <-- Don't forget this one!
+		shader.Use();
 		// Transformation matrices
 		glm::mat4 projection = glm::perspective(camera.Zoom, (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
 		glm::mat4 view = camera.GetViewMatrix();
@@ -115,20 +121,20 @@ int main()
 		glUniform3f(glGetUniformLocation(shader.Program, "viewPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 		// Point light 1
 		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].position"), pointLightPositions[0].x, pointLightPositions[0].y, pointLightPositions[0].z);
-		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].ambient"), 0.05f, 0.05f, 0.05f);
-		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].diffuse"), 1.0f, 1.0f, 1.0f);
-		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].specular"), 1.0f, 1.0f, 1.0f);
+		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].ambient"), pointLightColors[0].x * 0.1, pointLightColors[0].y * 0.1, pointLightColors[0].z * 0.1);
+		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].diffuse"), pointLightColors[0].x, pointLightColors[0].y, pointLightColors[0].z);
+		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[0].specular"), pointLightColors[0].x, pointLightColors[0].y, pointLightColors[0].z);
 		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[0].constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[0].linear"), 0.009);
-		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[0].quadratic"), 0.0032);
+		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[0].linear"), 0.09);
+		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[0].quadratic"), 0.032);
 		// Point light 2
 		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].position"), pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
-		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].ambient"), 0.05f, 0.05f, 0.05f);
-		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].diffuse"), 1.0f, 1.0f, 1.0f);
-		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].specular"), 1.0f, 1.0f, 1.0f);
+		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].ambient"), pointLightColors[1].x * 0.1, pointLightColors[1].y * 0.1, pointLightColors[1].z * 0.1);
+		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].diffuse"), pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
+		glUniform3f(glGetUniformLocation(shader.Program, "pointLights[1].specular"), pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
 		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[1].constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[1].linear"), 0.009);
-		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[1].quadratic"), 0.0032);
+		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[1].linear"), 0.09);
+		glUniform1f(glGetUniformLocation(shader.Program, "pointLights[1].quadratic"), 0.032);
 
 		// Draw the loaded model
 		glm::mat4 model;
@@ -160,7 +166,7 @@ int main()
 
 #pragma region "User input"
 
-// Moves/alters the camera positions based on user input
+// Move the camera
 void Do_Movement()
 {
 	// Camera controls
