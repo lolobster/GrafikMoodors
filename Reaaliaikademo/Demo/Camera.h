@@ -130,4 +130,28 @@ private:
 		this->Right = glm::normalize(glm::cross(this->Front, this->WorldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
 		this->Up = glm::normalize(glm::cross(this->Right, this->Front));
 	}
+
+	glm::mat4 myLookAt(glm::vec3 cameraPosition, glm::vec3 cameraTarget, glm::vec3 worldUp)
+	{
+		glm::vec3 cameraDirection = glm::normalize(cameraPosition - cameraTarget);
+		glm::vec3 cameraRight = glm::normalize(glm::cross(glm::normalize(worldUp), cameraDirection));
+		glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
+		glm::mat4 axesMatrix, positionMatrix;
+
+		axesMatrix[0][0] = cameraRight.x;
+		axesMatrix[1][0] = cameraRight.y;
+		axesMatrix[2][0] = cameraRight.z;
+		axesMatrix[0][1] = cameraUp.x;
+		axesMatrix[1][1] = cameraUp.y;
+		axesMatrix[2][1] = cameraUp.z;
+		axesMatrix[0][2] = cameraDirection.x;
+		axesMatrix[1][2] = cameraDirection.y;
+		axesMatrix[2][2] = cameraDirection.z;
+
+		positionMatrix[3][0] = -cameraPosition.x;
+		positionMatrix[3][1] = -cameraPosition.y;
+		positionMatrix[3][2] = -cameraPosition.z;
+
+		return axesMatrix * positionMatrix;
+	}
 };
