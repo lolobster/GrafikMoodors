@@ -81,6 +81,8 @@
     <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\resource\normalMapping.frag" />
+    <None Include="..\resource\normalMapping.vs" />
     <None Include="..\resource\pointLight.frag" />
     <None Include="..\resource\pointLight.vs" />
     <None Include="..\resource\shader.frag" />

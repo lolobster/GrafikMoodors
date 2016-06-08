@@ -58,5 +58,11 @@
     <None Include="..\resource\pointLight.vs">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\resource\normalMapping.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\resource\normalMapping.vs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
